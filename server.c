@@ -6,7 +6,7 @@
 /*   By: izperez <izperez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:39:43 by izperez           #+#    #+#             */
-/*   Updated: 2024/01/24 11:31:32 by izperez          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:09:58 by izperez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,21 @@ void	binary_to_text(int signum)
 	}
 }
 
+static void	get_pid(void)
+{
+	int	pid;
+
+	pid = getpid();
+	if (pid == 0)
+		ft_printf (ERROR "\033[35mPID has not been generated\033[0m\n");
+	else
+		ft_printf("PID is: %i\n", pid);
+}
+
 int	main(void)
 {
-	ft_printf("Server PID: %d\n", getpid());
+	get_pid();
+	ft_printf("Waiting...\n");
 	while (1)
 	{
 		signal(SIGUSR1, binary_to_text);
